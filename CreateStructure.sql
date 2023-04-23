@@ -36,14 +36,14 @@ CREATE TABLE dbo.Basket
         CONSTRAINT DFT_Basket_Value DEFAULT(0),
     PurchaseDate    DATETIME        NOT NULL
         CONSTRAINT DFT_Basket_PurchaseDate DEFAULT(SYSDATETIME()),
-    DiscountValue   NUMERIC(3, 2)   NOT NULL
+    DiscountValue   NUMERIC(10, 2)   NOT NULL
         CONSTRAINT DFT_Basket_DiscountValue DEFAULT(0),
     CONSTRAINT PK_Basket_SKU FOREIGN KEY(ID_SKU)
         REFERENCES dbo.SKU(ID),
     CONSTRAINT PK_Basket_Family FOREIGN KEY(ID_Family)
         REFERENCES dbo.Family(ID),
     CONSTRAINT CHK_Value CHECK(Value >= 0),
-    CONSTRAINT CHK_DiscountValue CHECK (DiscountValue BETWEEN 0 and 1)
+    CONSTRAINT CHK_DiscountValue CHECK (DiscountValue >= 0)
 );
 
 
